@@ -10,7 +10,6 @@
 		08671079196FCE7E00041ABE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08671078196FCE7E00041ABE /* main.swift */; };
 		08671082196FCEDA00041ABE /* AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 08671080196FCEDA00041ABE /* AccessToken.m */; };
 		086B2B01197095020033B694 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B2B00197095020033B694 /* Translator.swift */; };
-		086B2B061970A05E0033B694 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 086B2B051970A05E0033B694 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -133,7 +132,6 @@
 			files = (
 				08671079196FCE7E00041ABE /* main.swift in Sources */,
 				086B2B01197095020033B694 /* Translator.swift in Sources */,
-				086B2B061970A05E0033B694 /* README.md in Sources */,
 				08671082196FCEDA00041ABE /* AccessToken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

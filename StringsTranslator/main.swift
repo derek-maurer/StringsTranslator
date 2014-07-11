@@ -20,8 +20,7 @@ let microsoftTranslatorAppID = "SearchEmoji"
 /////////////////////////////////////////
 /////////////////////////////////////////
 
-let rootAPIURL = "http://api.microsofttranslator.com/v2/Http.svc/Translate?"
-var languages = ["en":"English",
+var convertToLanguages = ["en":"English",
     "ar":"Arabic",
     "bg":"Bulgarian",
     "ca":"Catalan",
@@ -62,6 +61,9 @@ var languages = ["en":"English",
     "vi":"Vietnamese",
     "cy":"Welsh"]
 
+//This exists because for some reason there are difference in ISO language codes between Apple and Microsoft
+let iOSLanguageCodesVsMicrosoftLanguageCodes = ["zh-CHS":"zh-Hans", "da": "da-DK", "hu": "hu-HU", "no":"nb-NO"]
+
 /////////////////////////////////////////////////////////
 //Setup access token
 /////////////////////////////////////////////////////////
@@ -73,7 +75,7 @@ AccessToken.setClientSecret(microsoftTranslatorClientSecret)
 //Remove the selected language
 /////////////////////////////////////////////////////////
 
-languages[originalStringsLanguage] = nil
+convertToLanguages[originalStringsLanguage] = nil
 
 /////////////////////////////////////////////////////////
 
@@ -107,7 +109,13 @@ if let accessToken = AccessToken.accessToken() {
             var key = (line.componentsSeparatedByString("=")[0] as NSString).stringByReplacingOccurrencesOfString("\"", withString: "")
             var value = (line.componentsSeparatedByString("=")[0] as NSString).stringByReplacingOccurrencesOfString("\"", withString: "")
             
-            for (languageCode:String, languageName:String) in languages {
+            for (lc:String, languageName:String) in convertToLanguages {
+                var languageCode = lc
+                
+                if let alternateLanguageCode = iOSLanguageCodesVsMicrosoftLanguageCodes[languageCode]? {
+                    languageCode = alternateLanguageCode
+                }
+                
                 //let translatedString = translateStringSynchronously(value, originalStringsLanguage, languageCode)
                 
                 let translatedString = value

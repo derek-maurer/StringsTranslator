@@ -8,6 +8,8 @@
 
 import Foundation
 
+let rootAPIURL = "http://api.microsofttranslator.com/v2/Http.svc/Translate?"
+
 func translateStringSynchronously(originalString: String, fromLanguage:String, toLanguage: String) -> String? {
     if let accessToken = AccessToken.accessToken()? {
         var error: NSError? = nil

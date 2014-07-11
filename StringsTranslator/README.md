@@ -1,4 +1,4 @@
-StringsTranslator will translate a strings file into 40 different languages. This uses the microsoft translator API. You can translate up to 2,000,000 characters per month for free using the microsoft translator API. This should be enough for most people, but if it's not just simply buy a plan that allows you to translate more text
+StringsTranslator will translate a .strings file into 40 different languages. This uses the microsoft translator API. You can translate up to 2,000,000 characters per month for free using the microsoft translator API. This should be enough for most people, but if it's not just simply buy a plan that allows you to translate more text
 
 Setup:
 
