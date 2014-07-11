@@ -104,6 +104,8 @@ let strings = stringsFileData.stringByReplacingOccurrencesOfString(" ", withStri
 /////////////////////////////////////////////////////////
 
 if let accessToken = AccessToken.accessToken() {
+    println("Started translation with access token: \(accessToken)")
+    
     for line in strings {
         if line.rangeOfString("\"").location != NSNotFound {
             var key = (line.componentsSeparatedByString("=")[0] as NSString).stringByReplacingOccurrencesOfString("\"", withString: "")
@@ -116,9 +118,9 @@ if let accessToken = AccessToken.accessToken() {
                     languageCode = alternateLanguageCode
                 }
                 
-                //let translatedString = translateStringSynchronously(value, originalStringsLanguage, languageCode)
+                let translatedString = translateStringSynchronously(value, originalStringsLanguage, languageCode)
                 
-                let translatedString = value
+                //let translatedString = value
                 
                 var fileText = ""
                 let filePath = "\(outputPath)/\(languageCode).lproj/Localizable.strings"
@@ -141,6 +143,8 @@ if let accessToken = AccessToken.accessToken() {
             }
         }
     }
+    
+    println("Finished translation")
 }
 else {
     println("Failed to get the accesstoken for microsoft translator")

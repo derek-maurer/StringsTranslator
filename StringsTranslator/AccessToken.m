@@ -8,21 +8,29 @@
 
 #import "AccessToken.h"
 
+static NSString *appID = nil;
+static NSString *clientSecret = nil;
+static NSString *accessToken = nil;
+
 @implementation AccessToken
 
 + (NSString*)accessToken {
-    NSString *defaultsAccessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"AccessToken"];
-    if (defaultsAccessToken) return defaultsAccessToken;
+    if (accessToken) return accessToken;
     
-    NSString *clientSecret = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                 (CFStringRef)[self clientSecret],
+    if (!clientSecret || !appID) {
+        NSLog(@"You must set the client secret and app id");
+        return nil;
+    }
+    
+    NSString *clientSecretEscaped = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                 (CFStringRef)clientSecret,
                                                                                  NULL,
                                                                                  (CFStringRef) @"!*'();:@&=+$,/?%#[]",
                                                                                  kCFStringEncodingUTF8));
     NSMutableString* authHeader = [NSMutableString stringWithString:@"client_id="];
-    [authHeader appendString:[self appID]];
+    [authHeader appendString:appID];
     [authHeader appendString:@"&client_secret="];
-    [authHeader appendString:clientSecret];
+    [authHeader appendString:clientSecretEscaped];
     [authHeader appendString:@"&grant_type=client_credentials&scope=http://api.microsofttranslator.com"];
     
     
@@ -43,21 +51,15 @@
     NSError* error;
     
     NSData* data = [NSURLConnection sendSynchronousRequest: requestAuTh returningResponse: &response error: &error];
-    NSString *accessToken = @"";
+    
     if (data != nil) {
         NSError *errorPaserJSON = nil;
         NSDictionary *jsonContents = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&errorPaserJSON];
         if (!errorPaserJSON) {
             accessToken = [jsonContents objectForKey:@"access_token"];
             
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:accessToken forKey:@"AccessToken"];
-            [defaults synchronize];
-            
             if (accessToken.length > 0 ) {
                 return accessToken;
-            }else{
-                accessToken = @"";
             }
         }
     }
@@ -65,24 +67,12 @@
     return nil;
 }
 
-+ (NSString*)appID {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"AppID"];
++ (void)setAppID:(NSString*)ai {
+    appID = ai;
 }
 
-+ (NSString*)clientSecret {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"ClientSecret"];
-}
-
-+ (void)setAppID:(NSString*)appID {
-    NSUserDefaults *defualts = [NSUserDefaults standardUserDefaults];
-    [defualts setObject:appID forKey:@"AppID"];
-    [defualts synchronize];
-}
-
-+ (void)setClientSecret:(NSString*)clientSecret {
-    NSUserDefaults *defualts = [NSUserDefaults standardUserDefaults];
-    [defualts setObject:clientSecret forKey:@"ClientSecret"];
-    [defualts synchronize];
++ (void)setClientSecret:(NSString*)cs {
+    clientSecret = cs;
 }
 
 @end
