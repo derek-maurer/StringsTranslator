@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		08671079196FCE7E00041ABE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08671078196FCE7E00041ABE /* main.swift */; };
+		08671082196FCEDA00041ABE /* AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 08671080196FCEDA00041ABE /* AccessToken.m */; };
+		086B2B01197095020033B694 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B2B00197095020033B694 /* Translator.swift */; };
+		086B2B061970A05E0033B694 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 086B2B051970A05E0033B694 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,11 @@
 /* Begin PBXFileReference section */
 		08671075196FCE7E00041ABE /* StringsTranslator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = StringsTranslator; sourceTree = BUILT_PRODUCTS_DIR; };
 		08671078196FCE7E00041ABE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		0867107F196FCEDA00041ABE /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessToken.h; sourceTree = "<group>"; };
+		08671080196FCEDA00041ABE /* AccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessToken.m; sourceTree = "<group>"; };
+		08671081196FCEDA00041ABE /* StringsTranslator-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StringsTranslator-Bridging-Header.h"; sourceTree = "<group>"; };
+		086B2B00197095020033B694 /* Translator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
+		086B2B051970A05E0033B694 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,11 @@
 			isa = PBXGroup;
 			children = (
 				08671078196FCE7E00041ABE /* main.swift */,
+				086B2B00197095020033B694 /* Translator.swift */,
+				0867107F196FCEDA00041ABE /* AccessToken.h */,
+				08671080196FCEDA00041ABE /* AccessToken.m */,
+				08671081196FCEDA00041ABE /* StringsTranslator-Bridging-Header.h */,
+				086B2B051970A05E0033B694 /* README.md */,
 			);
 			path = StringsTranslator;
 			sourceTree = "<group>";
@@ -119,6 +132,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				08671079196FCE7E00041ABE /* main.swift in Sources */,
+				086B2B01197095020033B694 /* Translator.swift in Sources */,
+				086B2B061970A05E0033B694 /* README.md in Sources */,
+				08671082196FCEDA00041ABE /* AccessToken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +220,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StringsTranslator/StringsTranslator-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -211,6 +228,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StringsTranslator/StringsTranslator-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -233,6 +251,7 @@
 				0867107E196FCE7E00041ABE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
