@@ -11,11 +11,11 @@ import Foundation
 /////////////////////////////////////////
 ////////// VARIABLES TO SET /////////////
 /////////////////////////////////////////
-let originalStringsFilePath = "/Users/derekmaurer/Dropbox/development/Projects/AppStore/Search Emoji/Search Emoji/en.lproj/Localizable.strings"
-let outputPath = "/Users/derekmaurer/Desktop/languages"
+let originalStringsFilePath = "/path/to/your/strings/file"
+let outputPath = "/path/to/your/output/directory"
 let originalStringsLanguage = "en" //English
-let microsoftTranslatorClientSecret = "FpzdmPQtvjwNxI8PRgejCp5gBeI4Og/3tAGUQ/tXdFA="
-let microsoftTranslatorAppID = "SearchEmoji"
+let microsoftTranslatorClientSecret = "ENTER YOUR CLIENT SECRET HERE"
+let microsoftTranslatorAppID = "ENTER YOUR APP ID HERE"
 /////////////////////////////////////////
 /////////////////////////////////////////
 /////////////////////////////////////////
@@ -83,6 +83,16 @@ convertToLanguages[originalStringsLanguage] = nil
 //Check if all the files exist and load
 /////////////////////////////////////////////////////////
 
+if microsoftTranslatorClientSecret == "ENTER YOUR CLIENT SECRET HERE" {
+    println("Bro, why didn't you read the README? Make sure you set your client secret")
+    exit(0)
+}
+
+if microsoftTranslatorAppID == "ENTER YOUR APP ID HERE" {
+    println("Bro, why didn't you read the README? Make sure you set your App ID")
+    exit(0)
+}
+
 if !NSFileManager.defaultManager().fileExistsAtPath(originalStringsFilePath) {
     println("Failed to start translating file because there wasn't a file at path: \(originalStringsFilePath)")
     exit(0)
@@ -119,8 +129,6 @@ if let accessToken = AccessToken.accessToken() {
                 }
                 
                 let translatedString = translateStringSynchronously(value, originalStringsLanguage, languageCode)
-                
-                //let translatedString = value
                 
                 var fileText = ""
                 let filePath = "\(outputPath)/\(languageCode).lproj/Localizable.strings"
