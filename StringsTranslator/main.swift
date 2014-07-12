@@ -11,11 +11,11 @@ import Foundation
 /////////////////////////////////////////
 ////////// VARIABLES TO SET /////////////
 /////////////////////////////////////////
-let originalStringsFilePath = "/path/to/your/strings/file"
-let outputPath = "/path/to/your/output/directory"
+let originalStringsFilePath = "/Users/derekmaurer/Dropbox/development/Projects/AppStore/Search Emoji/Search Emoji/en.lproj/Localizable.strings"
+let outputPath = "/Users/derekmaurer/Desktop/languages"
 let originalStringsLanguage = "en" //English
-let microsoftTranslatorClientSecret = "ENTER YOUR CLIENT SECRET HERE"
-let microsoftTranslatorAppID = "ENTER YOUR APP ID HERE"
+let microsoftTranslatorClientSecret = "FpzdmPQtvjwNxI8PRgejCp5gBeI4Og/3tAGUQ/tXdFA="
+let microsoftTranslatorAppID = "SearchEmoji"
 /////////////////////////////////////////
 /////////////////////////////////////////
 /////////////////////////////////////////
@@ -115,11 +115,12 @@ let strings = stringsFileData.stringByReplacingOccurrencesOfString(" ", withStri
 
 if let accessToken = AccessToken.accessToken() {
     println("Started translation with access token: \(accessToken)")
+    println("Tranlating \(strings.count) strings to \(convertToLanguages.count) languages")
     
     for line in strings {
         if line.rangeOfString("\"").location != NSNotFound {
             var key = (line.componentsSeparatedByString("=")[0] as NSString).stringByReplacingOccurrencesOfString("\"", withString: "")
-            var value = (line.componentsSeparatedByString("=")[0] as NSString).stringByReplacingOccurrencesOfString("\"", withString: "")
+            var value = (line.componentsSeparatedByString("=")[1] as NSString).stringByReplacingOccurrencesOfString("\"", withString: "").stringByReplacingOccurrencesOfString(";", withString: "")
             
             for (lc:String, languageName:String) in convertToLanguages {
                 var languageCode = lc
